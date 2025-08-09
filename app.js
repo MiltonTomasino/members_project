@@ -3,6 +3,7 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const pool = require("./db/database");
 const indexRouter = require("./routes/index");
+const loginRouter = require("./routes/login");
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(session({
 }));
 
 app.use("/", indexRouter);
+app.use("/login", loginRouter);
 
 app.listen(3000, ()=> {
     console.log("Listening in on port 3000.");
