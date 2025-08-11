@@ -6,6 +6,7 @@ const passport = require("passport");
 const registerRouter = require("./routes/register");
 const loginRouter = require("./routes/login");
 const indexRouter = require("./routes/index");
+const membershipRouter = require("./routes/membership");
 
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(passport.session());
 app.use("/", indexRouter)
 app.use("/log-in", loginRouter);
 app.use("/register", registerRouter);
+app.use("/membership", membershipRouter);
 
 app.listen(3000, ()=> {
     console.log("Listening in on port 3000.");
