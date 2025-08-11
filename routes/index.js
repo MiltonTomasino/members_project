@@ -6,7 +6,10 @@ router.get("/", isLoggedIn, controller.getIndexPage);
 router.get("/log-out", (req, res, next) => {
     req.logout(function (err) {
         if(err) return next(err);
-        res.redirect("/log-in");
+        req.session.destroy(err => {
+            if (err) console.error("Session destroy error: ", err);
+            res.redirect("/log-in");
+        })
     });
 })
 
