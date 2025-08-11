@@ -2,8 +2,10 @@ const express = require("express")
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const pool = require("./db/database");
-const indexRouter = require("./routes/index");
+const passport = require("passport");
+const registerRouter = require("./routes/register");
 const loginRouter = require("./routes/login");
+const indexRouter = require("./routes/index");
 
 
 const app = express();
@@ -25,8 +27,12 @@ app.use(session({
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
 
-app.use("/", indexRouter);
-app.use("/login", loginRouter);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/", indexRouter)
+app.use("/log-in", loginRouter);
+app.use("/register", registerRouter);
 
 app.listen(3000, ()=> {
     console.log("Listening in on port 3000.");
