@@ -10,6 +10,8 @@ const indexRouter = require("./routes/index");
 
 const app = express();
 
+require("./db/passport");
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 

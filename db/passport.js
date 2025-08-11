@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const { getUser, getUserById } = require("../controllers/indexController");
+const { getUser, getUserById } = require("../controllers/registerController");
 const utils = require("../controllers/utils");
 
 

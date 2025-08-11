@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const controller = require("../controllers/registerController");
-const { isMember } = require("./authMiddleware");
+const { isMember, preventSecondLogIn } = require("./authMiddleware");
 
-router.get("/", controller.getRegisterPage);
-router.post("/", controller.registerUser);
+router.get("/", preventSecondLogIn, controller.getRegisterPage);
+router.post("/", preventSecondLogIn, controller.registerUser);
 
 module.exports = router;
