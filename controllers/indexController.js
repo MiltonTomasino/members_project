@@ -11,7 +11,6 @@ module.exports.getMessages = async () => {
                                         JOIN users
                                         ON m.messenger = users.id`
         );
-        console.log(rows);
     return rows;
 }
 

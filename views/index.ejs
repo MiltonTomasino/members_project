@@ -14,7 +14,7 @@
         <% if (messages.length > 0) { %>
             <% messages.forEach(msg => { %>
                 <li>
-                    <% if (user.membership) { %>
+                    <% if (user && user.membership) { %>
                         <p><%= msg.fullname %></p>
                     <% } else { %>
                         <p>anonymous</p>
@@ -22,7 +22,7 @@
                     <h2><%= msg.title %></h2>
                     <p><%= msg.message %></p>
 
-                    <% if (user.admin) { %>
+                    <% if (user && user.admin) { %>
                         <form action="/delete-message" method="POST">
                             <input type="hidden" name="messageId" value="<%= msg.id %>">
                             <button type="submit">delete</button>
@@ -39,6 +39,7 @@
 
     </ul>
 
+    <% if (user) { %>
     <dialog class="modal">
         <h1>Message</h1>
         <form action="/send-message" method="POST">
@@ -52,8 +53,8 @@
     </dialog>
     <button class="msg-btn">create message</button>
 
-
     <a href="/log-out">Logout</a>
+    <% } %>
 </body>
 <script src="/javascript/javascript.js" defer></script>
 </html>
