@@ -12,3 +12,8 @@ module.exports.preventSecondLogIn = (req, res, next) => {
     if (req.isAuthenticated()) res.redirect("/");
     else next();
 }
+
+module.exports.isAdmin = (req, res, next) => {
+    if (req.isAuthenticated() && req.user.admin) {next();}
+    else {res.redirect("/")};
+}

@@ -1,4 +1,5 @@
-const express = require("express")
+const express = require("express");
+const path = require("path");
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const pool = require("./db/database");
@@ -18,6 +19,8 @@ app.set("views", "views");
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session({
     store: new pgSession({

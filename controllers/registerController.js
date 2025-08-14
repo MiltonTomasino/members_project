@@ -8,7 +8,6 @@ module.exports.getRegisterPage = (req, res) => {
 module.exports.registerUser = async (req, res) => {
     const { firstname, lastname, email, password} = req.body;
     const newPassword = await utils.genPassword(password);
-    const membership = req.body.membership ? true : false;
     console.log(firstname, lastname, email, newPassword, membership);
 
     try {

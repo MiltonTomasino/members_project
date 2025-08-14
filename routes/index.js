@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const controller = require("../controllers/indexController");
-const { isMember, isLoggedIn } = require("./authMiddleware");
+const { isMember, isLoggedIn, isAdmin } = require("./authMiddleware");
 
 router.get("/", isLoggedIn, controller.getIndexPage);
 router.get("/log-out", (req, res, next) => {
@@ -11,6 +11,8 @@ router.get("/log-out", (req, res, next) => {
             res.redirect("/log-in");
         })
     });
-})
+});
+router.post("/send-message", isLoggedIn, controller.sendMessage);
+router.post("/delete-message", isAdmin, controller.deleteMessage);
 
 module.exports = router;
