@@ -3,58 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
     <title><%= title %></title>
 </head>
 <body>
-    <%= title %>
-    <h1>THIS IS THE HOME PAGE</h1>
-
-
-    <ul>
-        <% if (messages.length > 0) { %>
-            <% messages.forEach(msg => { %>
-                <li>
-                    <% if (user && user.membership) { %>
-                        <p><%= msg.fullname %></p>
-                    <% } else { %>
-                        <p>anonymous</p>
-                    <% } %>
-                    <h2><%= msg.title %></h2>
-                    <p><%= msg.message %></p>
-
-                    <% if (user && user.admin) { %>
-                        <form action="/delete-message" method="POST">
-                            <input type="hidden" name="messageId" value="<%= msg.id %>">
-                            <button type="submit">delete</button>
-                        </form>
-                    <% } %>
-
-                </li> 
-            <% }); %>
-        <% } else { %>
-            <li>
-                No messages.
-            </li>
-        <% } %>
-
-    </ul>
+    <h1>Members Board</h1>
+    <% if (!user) { %>
+        <button><a href="/log-in">Login</a></button>
+    <% } %>
 
     <% if (user) { %>
-    <dialog class="modal">
-        <h1>Message</h1>
-        <form action="/send-message" method="POST">
-            <label for="title">Title: </label>
-            <input type="text" name="title">
-            <label for="message">Message: </label>
-            <textarea name="message"></textarea>
-            <button type="submit">submit</button>
-        </form>
-        <button class="exit-btn">Exit</button>
-    </dialog>
-    <button class="msg-btn">create message</button>
-
-    <a href="/log-out">Logout</a>
+        <div class="info">
+            <dialog class="modal">
+                <h1>Message</h1>
+                <form action="/send-message" method="POST">
+                    <label for="title">Title: </label>
+                    <input type="text" name="title">
+                    <label for="message">Message: </label>
+                    <textarea name="message"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+                <button class="exit-btn">Exit</button>
+            </dialog>
+            <button class="msg-btn">create message</button>
+            <% if (!user.membership) { %>
+                <button><a href="/membership">Become a member</a></button>
+            <% } %>
+            <button><a href="/log-out">Logout</a></button>
+        </div>
     <% } %>
+    
+    <div class="container">
+        <ul>
+            <% if (messages.length > 0) { %>
+                <% messages.forEach(msg => { %>
+                    <li>
+                        <% if (user && user.membership) { %>
+                            <p><%= msg.fullname %> <small><%= msg.created_at %></small></p>
+                        <% } else { %>
+                            <p>anonymous</p>
+                        <% } %>
+                        <h2><%= msg.title %></h2>
+                        <p><%= msg.message %></p>
+                        <% if (user && user.admin) { %>
+                            <form action="/delete-message" method="POST">
+                                <input type="hidden" name="messageId" value="<%= msg.id %>">
+                                <button type="submit">delete</button>
+                            </form>
+                        <% } %>
+                    </li>
+                <% }); %>
+            <% } else { %>
+                <li>
+                    No messages.
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </body>
 <script src="/javascript/javascript.js" defer></script>
 </html>

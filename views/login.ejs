@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
     <title><%= title %></title>
 </head>
 <body>
-    <%= title %>
-    <form action="/log-in" method="POST">
-        <label for="email">Email: </label>
-        <input type="email" name="email">
-        <label for="password">Password: </label>
-        <input type="password" name="password">
-        <button type="submit">login</button>
-    </form>
-    <a href="/register">Don't have an account? Register here.</a>
+    <h1>Log In</h1>
+    <div class="container">
+        <form action="/log-in" method="POST">
+            <div class="form-item">
+                <label for="email">Email: </label>
+                <input type="email" name="email">
+            </div>
+            <div class="form-item">
+                <label for="password">Password: </label>
+                <input type="password" name="password">
+            </div>
+            <button type="submit">login</button>
+        </form>
+        <a href="/register">Don't have an account? Register here.</a>
+    </div>
 </body>
 </html>

@@ -6,7 +6,7 @@ module.exports.getIndexPage = async (req, res) => {
 }
 
 module.exports.getMessages = async () => {
-    const { rows } = await pool.query(`SELECT m.id, CONCAT(firstname, ' ', lastname) as fullname, title, message, m.created_at
+    const { rows } = await pool.query(`SELECT m.id, CONCAT(firstname, ' ', lastname) as fullname, title, message, TO_CHAR(m.created_at, 'Mon DD, YYYY, HH12:MI AM') AS created_at
                                         FROM messages as m
                                         JOIN users
                                         ON m.messenger = users.id`

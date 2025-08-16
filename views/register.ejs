@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/register.css">
     <title><%= title %></title>
 </head>
 <body>
-    <%= title %>
     <h1>Register: </h1>
-    <form action="/register" method="POST">
-        <label for="firstname">First name: </label>
-        <input type="text" name="firstname">
-        <label for="lastname">Last name: </label>
-        <input type="text" name="lastname">
-        <label for="email">Email: </label>
-        <input type="email" name="email">
-        <label for="password">Password: </label>
-        <input type="password" name="password">
-        <button type="submit">register</button>
-    </form>
-    <a href="/log-in">Already have an account? Login here.</a>
+    <div class="container">
+        <form action="/register" method="POST">
+            <div class="form-item">
+                <label for="firstname">First name: </label>
+                <input type="text" name="firstname">
+            </div>
+            <div class="form-item">
+                <label for="lastname">Last name: </label>
+                <input type="text" name="lastname">
+            </div>
+            <div class="form-item">
+                <label for="email">Email: </label>
+                <input type="email" name="email">
+            </div>
+            <div class="form-item">
+                <label for="password">Password: </label>
+                <input type="password" name="password">
+            </div>
+            <button type="submit">register</button>
+        </form>
+        <a href="/log-in">Already have an account? Login here.</a>
+    </div>
 </body>
 </html>
